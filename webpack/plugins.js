@@ -1,7 +1,6 @@
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
-const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 
 module.exports = ({ production = false, browser = false } = {}) => {
   const bannerOptions = { raw: true, banner: 'require("source-map-support").install();' };
@@ -13,7 +12,6 @@ module.exports = ({ production = false, browser = false } = {}) => {
       new webpack.EnvironmentPlugin(['NODE_ENV']),
       new webpack.DefinePlugin(compileTimeConstantForMinification),
       new webpack.BannerPlugin(bannerOptions),
-      new HardSourceWebpackPlugin()
     ];
   }
   if (!production && browser) {
@@ -21,8 +19,6 @@ module.exports = ({ production = false, browser = false } = {}) => {
       new webpack.EnvironmentPlugin(['NODE_ENV']),
       new webpack.DefinePlugin(compileTimeConstantForMinification),
       new webpack.HotModuleReplacementPlugin(),
-
-      new HardSourceWebpackPlugin()
     ];
   }
   if (production && !browser) {
