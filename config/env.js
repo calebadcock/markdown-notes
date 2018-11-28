@@ -1,4 +1,4 @@
-// require('dotenv').config({ silent: true });
+require('dotenv').config({ silent: true });
 
 export const ENV = process.env.NODE_ENV || 'development';
 
@@ -13,6 +13,6 @@ export const google = {
 };
 
 
-export const SESSION_SECRET = process.env.SESSION_SECRET;
+export const SESSION_SECRET = process.env.SESSION_SECRET || 'not-secret';
 /* To make sure everything referencing the session ID knows what it is called */
 export const SESSION_ID = 'sid';

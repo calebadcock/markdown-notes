@@ -19,7 +19,13 @@ module.exports = (env = {}) => {
   console.log(`Running webpack in ${process.env.NODE_ENV} mode on ${isBrowser ? 'browser': 'server'}`);
 
   const hotMiddlewareScript = 'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true';
-  const node = { __dirname: true, __filename: true };
+  const node = {
+    __dirname: true,
+    __filename: true,
+    fs: 'empty',
+    net: 'empty',
+    tls: 'empty'
+  };
 
   const prodServerRender = {
     mode: "production",
