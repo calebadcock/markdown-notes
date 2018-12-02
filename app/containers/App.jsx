@@ -2,8 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import styles from '../css/main.css';
+import { isClient } from '../../config/app';
 
 const cx = classNames.bind(styles);
+
+if (isClient) {
+  require('!style-loader!css-loader!../css/overrides.css');
+}
 
 
 /*
@@ -17,7 +22,7 @@ const cx = classNames.bind(styles);
  */
 const App = ({ children }) => {
   return (
-    <div className={cx('app')}>
+    <div className={styles.app}>
       {children}
     </div>
   );

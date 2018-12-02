@@ -34,8 +34,14 @@ class Notes extends Component {
         return (
             <div>
                 <Navbar />
-                <textarea onChange={this.handleChange} value={this.state.text}></textarea>
-                <ReactMarkdown source={this.state.text} />
+                <div className={styles.container} >
+                  <div className={styles.wrapper}>
+                    <textarea className={styles.txtRaw} onChange={this.handleChange} value={this.state.text}/>
+                  </div>
+                  <div className={styles.wrapper}>
+                    <ReactMarkdown className={styles.preview} source={this.state.text} />
+                  </div>
+                </div>
             </div>
         );
     }
