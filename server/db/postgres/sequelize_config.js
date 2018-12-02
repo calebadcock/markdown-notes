@@ -1,24 +1,34 @@
+const debug = require('debug')('merkdown-notes:db:sequelize');
+
+require('babel-polyfill');
+require('babel-register')({
+  presets: ['es2015', 'stage-0']
+});
+
+const env = require('../../../config/env');
 module.exports = {
   development: {
-    username: process.env.PGUSER || 'root',
-    password: null,
-    database: 'react_webpack_node_development',
-    host: '127.0.0.1',
-    dialect: 'postgres'
+    username: env.DB_USER,
+    password: env.DB_PASS,
+    database: env.DB_NAME,
+    host: env.DB_URL,
+    dialect: 'postgres',
+    logging: false
   },
   test: {
-    username: process.env.PGUSER || 'root',
-    password: null,
-    database: 'react_webpack_node_test',
-    host: '127.0.0.1',
-    dialect: 'postgres'
+    username: env.DB_USER,
+    password: env.DB_PASS,
+    database: env.DB_NAME,
+    host: env.DB_URL,
+    dialect: 'postgres',
+    logging: false
   },
   production: {
-    use_env_variable: 'POSTGRES_DB_URL',
-    username: process.env.PGUSER || 'root',
-    password: null,
-    database: 'react_webpack_node_production',
-    host: '127.0.0.1',
-    dialect: 'postgres'
+    username: env.DB_USER,
+    password: env.DB_PASS,
+    database: env.DB_NAME,
+    host: env.DB_URL,
+    dialect: 'postgres',
+    logging: false
   }
 };

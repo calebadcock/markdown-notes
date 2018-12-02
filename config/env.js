@@ -1,15 +1,22 @@
 require('dotenv').config({ silent: true });
 
 export const ENV = process.env.NODE_ENV || 'development';
+const useTestDB = ENV === 'test';
 
-export const DB_TYPE = 'POSTGRES';
+export const PORT = process.env.PORT || 3000;
+export const DB_URL = process.env.DB_URL;
+export const DB_NAME = useTestDB ? `${process.env.DB_NAME}_test` : process.env.DB_NAME;
+export const DB_USER = process.env.DB_USER;
+export const DB_PASS = process.env.DB_PASS;
 
 export const GOOGLE_ANALYTICS_ID = process.env.GOOGLE_ANALYTICS_ID || null;
 
+export const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
+
 export const google = {
-  clientID: process.env.GOOGLE_CLIENTID,
-  clientSecret: process.env.GOOGLE_SECRET,
-  callbackURL: process.env.GOOGLE_CALLBACK
+  clientID: GOOGLE_CLIENT_ID,
+  clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+  callbackURL: process.env.GOOGLE_CALLBACK_URL
 };
 
 
