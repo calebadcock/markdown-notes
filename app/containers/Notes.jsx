@@ -5,6 +5,9 @@ import classNames from 'classnames/bind';
 import styles from '../css/containers/notes.css';
 import Navbar from '../components/Navbar.jsx';
 import ReactMarkdown from 'react-markdown';
+import { isClient } from '../../config/app';
+
+const GoogleLogin = isClient ? require('react-google-login').GoogleLogin : undefined;
 
 const cx = classNames.bind(styles);
 /**
@@ -34,8 +37,22 @@ class Notes extends Component {
         return (
             <div>
                 <Navbar />
-                <textarea onChange={this.handleChange} value={this.state.text}></textarea>
-                <ReactMarkdown source={this.state.text} />
+                { GoogleLogin &&
+                <GoogleLogin
+                  clientId={window.GOOGLE_CLIENT_ID}
+                  buttonText="Login"
+                  onSuccess={() => {}}
+                  onFailure={() => {}}
+                />
+                }
+                <div className={styles.container}>
+                  <div className={styles.wrapper}>
+                    <textarea className={styles.txtRaw} onChange={this.handleChange} value={this.state.text}/>
+                  </div>
+                  <div className={styles.wrapper}>
+                    <ReactMarkdown className={styles.preview} source={this.state.text} />
+                  </div>
+                </div>
             </div>
         );
     }

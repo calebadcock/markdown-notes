@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Layout, Header, Navigation, Drawer, Content } from 'react-mdl';
 
 // import styles from '../css/containers/navbar.css';
 

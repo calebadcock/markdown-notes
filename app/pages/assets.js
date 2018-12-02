@@ -5,6 +5,7 @@ https://github.com/google/web-starter-kit/blob/master/app/index.html
 // import appleFavicon from '../images/apple-appicon-precomposed.png';
 // import msFavicon from '../images/ms-appicon-precomposed.png';
 // import favicon from '../images/favicon.png';
+import { GOOGLE_CLIENT_ID } from '../../config/env';
 
 const metaAssets = () => {
   return [
@@ -33,7 +34,9 @@ const metaAssets = () => {
     { name: 'apple-mobile-web-app-title', content: 'Markdown Notes' },
     // Tile icon for Win8 (144x144 + tile color)
     // { name: 'msapplication-TileImage', content: msFavicon },
-    { name: 'msapplication-TileColor', content: '#3372DF' }
+    { name: 'msapplication-TileColor', content: '#3372DF' },
+    // Google Client ID
+    { name: 'google-signin-client_id', content: GOOGLE_CLIENT_ID }
   ];
 };
 

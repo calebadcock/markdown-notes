@@ -22,6 +22,8 @@ const buildPage = ({ componentHTML, initialState, headAssets }) => {
     ${headAssets.link.toString()}
     ${staticAssets.createStylesheets()}
     ${staticAssets.createTrackingScript()}
+    ${staticAssets.createGooglePlatformLibrary()}
+    ${staticAssets.createGoogleClientId()}
   </head>
   <body>
     <div id="app">${componentHTML}</div>
