@@ -75,24 +75,11 @@ const authenticated = (
   }
 };
 
-const notes = (
-    state = [],
-    action
-) => {
-    switch (action.type) {
-        case types.GET_NOTES_SUCCESS:
-            return action;
-        default:
-            return state;
-    }
-};
-
 const userReducer = combineReducers({
   isLogin,
   isWaiting,
   authenticated,
-  message,
-  notes
+  message
 });
 
 export default userReducer;

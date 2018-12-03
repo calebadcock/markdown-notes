@@ -47,7 +47,7 @@ Sidebar.propTypes = {
     notes: PropTypes.object
 };
 
-const mapStateToProps = (user) => {
-    return { user };
+const mapStateToProps = (notes) => {
+    return { notes };
 };
 export default connect(mapStateToProps, {getNotes})(Sidebar);
