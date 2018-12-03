@@ -8,11 +8,13 @@
 * { box-sizing: border-box; }
 
 body {
+    background-color: #fafafa !important;
   margin: 0;
   font-family: var(--fontMontserrat);
 }
 
 .app {
+    padding: 0 !important;
   @apply(--box);
   height: 100%;
   font-weight: normal;
