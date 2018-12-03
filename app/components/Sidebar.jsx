@@ -17,49 +17,63 @@ const cx = classNames.bind(styles);
 *
 */
 class Sidebar extends Component {
-    /**
-    * Sets the initial state of the Sidebar
-    * @param {Object} props
-    */
-    constructor(props) {
-        super(props);
-        this.state = {};
-    }
+  /**
+  * Sets the initial state of the Sidebar
+  * @param {Object} props
+  */
+  constructor(props) {
+      super(props);
+      this.state = {};
+  }
 
-    /**
-     * Invoked once, retrieve users notes
-     */
-    componentDidMount() {
-        this.props.getNotes();
-    }
+  /**
+   * Invoked once, retrieve users notes
+   */
+  componentDidMount() {
+      this.props.getNotes();
+  }
 
-    /**
-    * @return {*}
-    *
-    */
-    render() {
-        return (
-            <div className={styles.sidebar}>
+  /**
+   *
+   * @return {any}
+   */
+  getLoginButton = () => {
+    return GoogleLogin && (
+      <GoogleLogin
+        clientId={window.GOOGLE_CLIENT_ID}
+        buttonText="Login"
+        onSuccess={() => {}}
+        onFailure={() => {}}
+      />
+    );
+  };
 
-              { GoogleLogin &&
-              <GoogleLogin
-                clientId={window.GOOGLE_CLIENT_ID}
-                buttonText="Login"
-                onSuccess={() => {}}
-                onFailure={() => {}}
-              />
-              }
-            </div>
-        );
-    }
+  /**
+  * @return {*}
+  *
+  */
+  render() {
+    const { signedIn } = this.props;
+      return (
+          <div className={styles.sidebar}>
+            {!signedIn &&
+              <div className={styles.containerLogin}>
+                <h2>Log in to save notes</h2>
+                { this.getLoginButton() }
+              </div>
+            }
+          </div>
+      );
+  }
 }
 
 Sidebar.propTypes = {
-    getNotes: PropTypes.func,
-    notes: PropTypes.object
+  getNotes: PropTypes.func,
+  notes: PropTypes.object,
+  signedIn: PropTypes.bool.isRequired
 };
 
-const mapStateToProps = (notes) => {
-    return { notes };
+const mapStateToProps = (notes, user) => {
+  return { notes, signedIn: user.authenticated };
 };
 export default connect(mapStateToProps, {getNotes})(Sidebar);
