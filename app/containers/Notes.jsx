@@ -6,9 +6,6 @@ import styles from '../css/containers/notes.css';
 import Navbar from '../components/Navbar.jsx';
 import Sidebar from '../components/Sidebar.jsx';
 import ReactMarkdown from 'react-markdown';
-import { isClient } from '../../config/app';
-
-const GoogleLogin = isClient ? require('react-google-login').GoogleLogin : undefined;
 
 const cx = classNames.bind(styles);
 /**
@@ -38,14 +35,6 @@ class Notes extends Component {
         return (
             <div>
                 <Navbar />
-                { GoogleLogin &&
-                <GoogleLogin
-                  clientId={window.GOOGLE_CLIENT_ID}
-                  buttonText="Login"
-                  onSuccess={() => {}}
-                  onFailure={() => {}}
-                />
-                }
                 <Sidebar />
                 <div className={styles.container}>
                   <div className={styles.wrapper}>

@@ -4,6 +4,10 @@ import { connect } from 'react-redux';
 import classNames from 'classnames/bind';
 import styles from '../css/components/sidebar.css';
 import { getNotes } from '../actions/users';
+import { isClient } from '../../config/app';
+
+const GoogleLogin = isClient ? require('react-google-login').GoogleLogin : undefined;
+
 
 const cx = classNames.bind(styles);
 
@@ -36,7 +40,15 @@ class Sidebar extends Component {
     render() {
         return (
             <div className={styles.sidebar}>
-                Sidebar
+
+              { GoogleLogin &&
+              <GoogleLogin
+                clientId={window.GOOGLE_CLIENT_ID}
+                buttonText="Login"
+                onSuccess={() => {}}
+                onFailure={() => {}}
+              />
+              }
             </div>
         );
     }
