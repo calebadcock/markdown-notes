@@ -40,5 +40,13 @@ export default (app) => {
         failureRedirect: '/login'
       })
     );
+
+    app.get('/user/notes', (req, res) => {
+        try {
+            res.send([{ text: 'test', user: 1 }]);
+        } catch (err) {
+        
+        }
+    })
   }
 };

@@ -1,5 +1,5 @@
 import { push } from 'react-router-redux';
-import { authService } from '../services';
+import { authService, userService } from '../services';
 
 import * as types from '../types';
 
@@ -55,6 +55,24 @@ export function toggleLoginMode() {
   return { type: types.TOGGLE_LOGIN_MODE };
 }
 
+export function beginGetNotes() {
+    return { type: types.GET_NOTES};
+}
+
+export function getNotesSuccess(notes) {
+    return {
+        type: types.GET_NOTES_SUCCESS,
+        notes: notes
+    };
+}
+
+export function getNotesError(message) {
+    return {
+        type: types.GET_NOTES_ERROR,
+        message: message
+    };
+}
+
 export function manualLogin(data) {
   return (dispatch) => {
     dispatch(beginLogin());
@@ -97,4 +115,22 @@ export function logOut() {
         dispatch(logoutError());
       });
   };
+}
+
+export function getNotes() {
+    return dispatch => {
+        console.log('begin notes');
+        dispatch(beginGetNotes());
+        console.log('getting notes');
+        return userService().getNotes()
+            .then( response => {
+                console.log('got here ??????')
+                console.log('response', response);
+                dispatch(getNotesSuccess(response.data));
+                dispatch(push('/'));
+            })
+            .catch( error => {
+                dispatch(getNotesError());
+            });
+    }
 }

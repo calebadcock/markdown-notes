@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import classNames from 'classnames/bind';
 import styles from '../css/containers/notes.css';
 import Navbar from '../components/Navbar.jsx';
+import Sidebar from '../components/Sidebar.jsx';
 import ReactMarkdown from 'react-markdown';
 import { isClient } from '../../config/app';
 
@@ -45,6 +46,7 @@ class Notes extends Component {
                   onFailure={() => {}}
                 />
                 }
+                <Sidebar />
                 <div className={styles.container}>
                   <div className={styles.wrapper}>
                     <textarea className={styles.txtRaw} onChange={this.handleChange} value={this.state.text}/>

@@ -22,7 +22,7 @@ const rootReducer = combineReducers({
   isFetching,
   user,
   message,
-  routing
+  routing,
 });
 
 export default rootReducer;

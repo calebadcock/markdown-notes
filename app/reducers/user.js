@@ -41,6 +41,7 @@ const isWaiting = (
     case types.MANUAL_LOGIN_USER:
     case types.SIGNUP_USER:
     case types.LOGOUT_USER:
+    case types.GET_NOTES:
       return true;
     case types.LOGIN_SUCCESS_USER:
     case types.SIGNUP_SUCCESS_USER:
@@ -48,6 +49,8 @@ const isWaiting = (
     case types.LOGIN_ERROR_USER:
     case types.SIGNUP_ERROR_USER:
     case types.LOGOUT_ERROR_USER:
+    case types.GET_NOTES_SUCCESS:
+    case types.GET_NOTES_ERROR:
       return false;
     default:
       return state;
@@ -72,11 +75,24 @@ const authenticated = (
   }
 };
 
+const notes = (
+    state = [],
+    action
+) => {
+    switch (action.type) {
+        case types.GET_NOTES_SUCCESS:
+            return action;
+        default:
+            return state;
+    }
+};
+
 const userReducer = combineReducers({
   isLogin,
   isWaiting,
   authenticated,
-  message
+  message,
+  notes
 });
 
 export default userReducer;
