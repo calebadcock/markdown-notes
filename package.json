@@ -1,6 +1,6 @@
 {
   "name": "markdown-notes",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Markdown note-taking application",
   "repository": "https://github.com/calebadcock/markdown-notes",
   "main": "index.js",
@@ -20,7 +20,7 @@
     "test-ui": "mocha ./app/tests/setup.js --compilers css:./app/tests/compilers/css ./app/**/*-test.js",
     "test-ui:watch": "mocha ./app/tests/setup.js --watch --compilers css:./app/tests/compilers/css ./app/**/*-test.js"
   },
-  "author": "Caleb Adcock",
+  "author": "Caleb Adcock, Eric Groh, Kristin Van Deusen",
   "license": "UNLICENSED",
   "devDependencies": {
     "babel-cli": "^6.24.1",
