@@ -78,8 +78,8 @@ class Sidebar extends Component {
           let _notes = Object.values(notes);
           _notes = _notes.map( (note) => {
               return (
-                  <div className={styles.note} key={note.id}>
-                    <a>{ note.text }</a>
+                  <div className={styles.note} key={note.id} data-id={note.id} onClick={this.props.action}>
+                    <div >{ note.text }</div>
                   </div>
               );
           });

@@ -19,13 +19,25 @@ class Notes extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            text: `# Welcome!`
+            text: `# Welcome!`,
+            noteId: null
         };
     }
 
     handleChange = (e) => {
         this.setState({ text: e.target.value });
     };
+
+    handler = (e) => {
+        const id = e.target.getAttribute('data-id');
+        const text = e.target.textContent;
+        this.setState({
+            text: e.target.textContent,
+            noteId: id
+        });
+        console.log(id, text);
+        console.log('hello world');
+    }
 
     /**
     * Renders notes container
@@ -35,7 +47,7 @@ class Notes extends Component {
         return (
             <div>
                 <Navbar />
-                <Sidebar />
+                <Sidebar action={this.handler}/>
                 <div className={styles.container}>
                   <div className={styles.wrapper}>
                     <textarea className={styles.txtRaw} onChange={this.handleChange} value={this.state.text}/>

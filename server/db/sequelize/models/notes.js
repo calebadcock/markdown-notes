@@ -3,7 +3,7 @@
 export default (sequelize, DataTypes) => {
   const Note = sequelize.define('Note', {
     text: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false,
     },
     userId: {

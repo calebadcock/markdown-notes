@@ -8,7 +8,7 @@ module.exports = {
           autoIncrement: true
         },
         text: {
-          type: DataTypes.STRING,
+          type: DataTypes.TEXT,
           allowNull: false
         },
         userId: {
