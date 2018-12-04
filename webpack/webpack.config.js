@@ -59,20 +59,6 @@ module.exports = (env = {}) => {
       publicPath: PATHS.public
     },
     optimization: {
-      minimizer: [
-        new UglifyJsPlugin({
-          sourceMap: true,
-          uglifyOptions: {
-            output: {
-              comments: false,
-              ascii_only: true
-            },
-            compress: {
-              warnings: false
-            }
-          }
-        })
-      ],
       splitChunks: {
         chunks: "all",
         cacheGroups: {

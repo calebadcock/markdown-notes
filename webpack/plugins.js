@@ -44,7 +44,6 @@ module.exports = ({ production = false, browser = false } = {}) => {
         filename: '[contenthash].css',
         allChunks: true,
       }),
-      webpack.optimize.minimize,
       new webpack.optimize.ModuleConcatenationPlugin(),
       new ManifestPlugin({
         fileName: 'manifest.json',
