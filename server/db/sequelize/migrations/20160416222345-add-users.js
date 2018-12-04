@@ -11,35 +11,10 @@ module.exports = {
           type: DataTypes.STRING,
           allowNull: false
         },
-        password: {
-          type: DataTypes.STRING
-        },
-        name: {
+        googleId: {
           type: DataTypes.STRING,
-          defaultValue: ''
+          allowNull: false
         },
-        gender: {
-          type: DataTypes.STRING,
-          defaultValue: ''
-        },
-        location: {
-          type: DataTypes.STRING,
-          defaultValue: ''
-        },
-        website: {
-          type: DataTypes.STRING,
-          defaultValue: ''
-        },
-        picture: {
-          type: DataTypes.STRING,
-          defaultValue: ''
-        },
-        resetPasswordToken: {
-          type: DataTypes.STRING
-        },
-        resetPasswordExpires: {
-          type: DataTypes.DATE
-        }
       }
     ).then(() =>
       queryInterface.addIndex(

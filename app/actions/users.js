@@ -3,75 +3,75 @@ import { authService, userService } from '../services';
 
 import * as types from '../types';
 
-function beginLogin() {
+const beginLogin = () => {
   return { type: types.MANUAL_LOGIN_USER };
-}
+};
 
-function loginSuccess(message) {
+const loginSuccess = (message) => {
   return {
     type: types.LOGIN_SUCCESS_USER,
     message
   };
-}
+};
 
-function loginError(message) {
+const loginError = (message) => {
   return {
     type: types.LOGIN_ERROR_USER,
     message
   };
-}
+};
 
-function signUpError(message) {
+const signUpError = (message) => {
   return {
     type: types.SIGNUP_ERROR_USER,
     message
   };
-}
+};
 
-function beginSignUp() {
+const beginSignUp = () => {
   return { type: types.SIGNUP_USER };
-}
+};
 
-function signUpSuccess(message) {
+const signUpSuccess = (message) => {
   return {
     type: types.SIGNUP_SUCCESS_USER,
     message
   };
-}
+};
 
-function beginLogout() {
+const beginLogout = () => {
   return { type: types.LOGOUT_USER};
-}
+};
 
-function logoutSuccess() {
+const logoutSuccess = () => {
   return { type: types.LOGOUT_SUCCESS_USER };
-}
+};
 
-function logoutError() {
+const logoutError = () => {
   return { type: types.LOGOUT_ERROR_USER };
-}
+};
 
-export function toggleLoginMode() {
+export const toggleLoginMode = () => {
   return { type: types.TOGGLE_LOGIN_MODE };
-}
+};
 
-export function beginGetNotes() {
+export const beginGetNotes = () => {
     return { type: types.GET_NOTES};
-}
+};
 
-export function getNotesSuccess(notes) {
+export const getNotesSuccess = (notes) => {
     return {
         type: types.GET_NOTES_SUCCESS,
         notes: notes
     };
-}
+};
 
-export function getNotesError(message) {
+export const getNotesError = (message) => {
     return {
         type: types.GET_NOTES_ERROR,
         message: message
     };
-}
+};
 
 export function manualLogin(data) {
   return (dispatch) => {
@@ -88,22 +88,7 @@ export function manualLogin(data) {
   };
 }
 
-export function signUp(data) {
-  return (dispatch) => {
-    dispatch(beginSignUp());
-
-    return authService().signUp(data)
-      .then((response) => {
-          dispatch(signUpSuccess('You have successfully registered an account!'));
-          dispatch(push('/'));
-      })
-      .catch((err) => {
-        dispatch(signUpError('Oops! Something went wrong when signing up'));
-      });
-  };
-}
-
-export function logOut() {
+export const logout = () => {
   return (dispatch) => {
     dispatch(beginLogout());
 
@@ -115,22 +100,22 @@ export function logOut() {
         dispatch(logoutError());
       });
   };
-}
+};
 
-export function getNotes() {
-    return dispatch => {
-        console.log('begin notes');
-        dispatch(beginGetNotes());
-        console.log('getting notes');
-        return userService().getNotes()
-            .then( response => {
-                console.log('got here ??????')
-                console.log('response', response);
-                dispatch(getNotesSuccess(response.data));
-                dispatch(push('/'));
-            })
-            .catch( error => {
-                dispatch(getNotesError());
-            });
+export const getNotes = () => {
+    return (dispatch) => {
+    console.log('begin notes');
+    dispatch(beginGetNotes());
+    console.log('getting notes');
+    return userService().getNotes()
+      .then((response) => {
+          console.log('got here ??????')
+          console.log('response', response);
+          dispatch(getNotesSuccess(response.data));
+          dispatch(push('/'));
+      })
+      .catch((error) => {
+          dispatch(getNotesError());
+      });
     }
-}
+};

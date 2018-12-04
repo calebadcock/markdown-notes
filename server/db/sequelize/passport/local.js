@@ -1,16 +1,25 @@
-import { Models } from '../models';
+import { Models, sequelize } from '../models';
 
 const User = Models.User;
 
-export default (email, password, done) =>
-  User.findOne({ where: { email } }).then((user) => {
-    if (!user) return done(null, false, { message: `There is no record of the email ${email}.` });
-    return user.comparePassword(password).then(
-      (result) => {
-        if (result) done(null, user);
-        else done(null, false, { message: 'Your email/password combination is incorrect.' });
-    });
+const createUserWithToken = (email, googleId, done) => {
+  return sequelize.transaction((transaction) =>
+    User.create({
+      email,
+      googleId,
+    }, { transaction }).then((user) =>
+      done(null, user)
+    )
+  );
+};
+
+export default (email, googleId, done) =>
+  User.findOne({
+    where: { email, googleId }
+  }).then((existingUser) => {
+    if (existingUser) return done(null, existingUser);
+    else return createUserWithToken(email, googleId, done);
   }).catch((err) => {
     console.log(err);
-    done(null, false, { message: 'Something went wrong trying to authenticate' });
+    return done(null, false, { message: 'Something went wrong trying to authenticate' });
   });

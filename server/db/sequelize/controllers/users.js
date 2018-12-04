@@ -1,8 +1,6 @@
 import passport from 'passport';
 import { Models } from '../models';
 
-const User = Models.User;
-
 /**
  * POST /login
  */
@@ -30,34 +28,7 @@ export function logout(req, res) {
   res.sendStatus(200);
 }
 
-/**
- * POST /signup
- * Create a new local account
- */
-export function signUp(req, res, next) {
-  User.findOne({ where: { email: req.body.email } }).then((existingUser) => {
-    if (existingUser) {
-      return res.sendStatus(409);
-    }
-
-    const user = User.build({
-      email: req.body.email,
-      password: req.body.password
-    });
-
-    return user.save().then(() => {
-      req.logIn(user, (err) => {
-        if (err) return res.sendStatus(401);
-        return res.sendStatus(200);
-      });
-    });
-  }).catch(err =>
-    next(err)
-  );
-}
-
 export default {
   login,
-  logout,
-  signUp
+  logout
 };

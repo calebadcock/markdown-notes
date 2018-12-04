@@ -4,9 +4,11 @@ import { connect } from 'react-redux';
 import classNames from 'classnames/bind';
 import styles from '../css/components/sidebar.css';
 import { getNotes } from '../actions/users';
+import { manualLogin, logout } from '../actions/users';
 import { isClient } from '../../config/app';
 
 const GoogleLogin = isClient ? require('react-google-login').GoogleLogin : undefined;
+const GoogleLogout = isClient ? require('react-google-login').GoogleLogout : undefined;
 
 
 const cx = classNames.bind(styles);
@@ -34,7 +36,7 @@ class Sidebar extends Component {
   }
 
   /**
-   *
+   * Google login button
    * @return {any}
    */
   getLoginButton = () => {
@@ -42,38 +44,62 @@ class Sidebar extends Component {
       <GoogleLogin
         clientId={window.GOOGLE_CLIENT_ID}
         buttonText="Login"
-        onSuccess={() => {}}
-        onFailure={() => {}}
+        onSuccess={(response) => {
+          this.props.manualLogin({
+            email: response.profileObj.email, googleId: response.googleId
+          });
+        }}
+        onFailure={(response) => {
+          console.log(response);
+        }}
       />
     );
   };
 
+  /**
+   * Google logout button
+   * @return {any}
+   */
+  getLogoutButton = () => {
+    return (
+      <button className={styles.btnLogout} onClick={this.props.logout}>
+        Logout
+      </button>
+    );
+  };
   /**
   * @return {*}
   *
   */
   render() {
     const { signedIn } = this.props;
-      return (
-          <div className={styles.sidebar}>
-            {!signedIn &&
-              <div className={styles.containerLogin}>
-                <h2>Log in to save notes</h2>
-                { this.getLoginButton() }
-              </div>
-            }
+    return (
+        <div className={styles.sidebar}>
+          {!signedIn &&
+            <div className={styles.containerLogin}>
+              <h2>Log in to save notes</h2>
+              { this.getLoginButton() }
+            </div>
+          }
+          { signedIn &&
+          <div className={styles.containerLogin}>
+            { this.getLogoutButton() }
           </div>
-      );
+          }
+        </div>
+    );
   }
 }
 
 Sidebar.propTypes = {
   getNotes: PropTypes.func,
+  manualLogin: PropTypes.func,
+  logout: PropTypes.func,
   notes: PropTypes.object,
-  signedIn: PropTypes.bool.isRequired
+  signedIn: PropTypes.bool
 };
 
-const mapStateToProps = (notes, user) => {
+const mapStateToProps = ({ notes, user }) => {
   return { notes, signedIn: user.authenticated };
 };
-export default connect(mapStateToProps, {getNotes})(Sidebar);
+export default connect(mapStateToProps, {getNotes, manualLogin, logout})(Sidebar);
