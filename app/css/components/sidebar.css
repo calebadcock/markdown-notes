@@ -33,3 +33,22 @@
   cursor: pointer;
   outline: none;
 }
+
+.notesContainer {
+    height: 85%;
+    overflow-y: scroll;
+}
+
+.notesWrapper {
+    height: 100% !important;
+}
+
+.note {
+    height: 75px;
+    width: 100%;
+    padding: 16px 40px;
+}
+
+.note:hover {
+    background-color: #e0e0e0;
+}

@@ -4,6 +4,7 @@
 import passport from 'passport';
 import unsupportedMessage from '../db/unsupportedMessage';
 import { controllers, passport as passportConfig } from '../db';
+import { buildApiResponse } from './helpers';
 
 const usersController = controllers && controllers.users;
 
@@ -24,12 +25,9 @@ export default (app) => {
       })
     );
 
-    app.get('/user/notes', (req, res) => {
-        try {
-            res.send([{ text: 'test', user: 1 }]);
-        } catch (err) {
-
-        }
+    app.get('/user/notes', async (req, res) => {
+            const notes = await usersController.getNotes(req.user.id);
+            return buildApiResponse(req, res, 200, notes);
     });
   }
 };

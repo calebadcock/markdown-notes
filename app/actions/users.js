@@ -62,7 +62,7 @@ export const beginGetNotes = () => {
 export const getNotesSuccess = (notes) => {
     return {
         type: types.GET_NOTES_SUCCESS,
-        notes: notes
+        notes
     };
 };
 
