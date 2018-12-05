@@ -6,7 +6,6 @@ import styles from '../css/components/navbar.css';
 
 const cx = classNames.bind(styles);
 
-
 /**
 * Navbar component
 *
@@ -20,6 +19,7 @@ class Navbar extends Component {
         return (
             <div className={styles.navbar}>
                 <h2 className={styles.title}>Markdown Notes</h2>
+                <a className={styles.navButton} onClick={() => this.props.newNote()}>Create Note</a>
             </div>
         );
     }

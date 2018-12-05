@@ -7,6 +7,7 @@ import Navbar from '../components/Navbar.jsx';
 import Sidebar from '../components/Sidebar.jsx';
 import ReactMarkdown from 'react-markdown';
 import { updateNote } from '../actions/users';
+import Mousetrap from 'mousetrap';
 
 
 const cx = classNames.bind(styles);
@@ -29,11 +30,22 @@ class Notes extends Component {
         };
     }
 
+    /**
+     * Invoked once, setup mousetrap for keyboard shortcuts
+     */
+    componentDidMount() {
+        Mousetrap.bind(['command+s', 'ctrl+s'], () => {
+            if (this.state.note.id) {
+                this.props.updateNote(this.state.note.id, this.state.note.text);
+            }
+        });
+    }
+
     handleChange = (newValue) => {
         const { note } = this.state;
         note.text = newValue;
         this.setState({ note });
-        console.log(this.state.note.id);
+        console.log(note);
         if (this.state.note.id) {
             if (this.state.typing) {
                 clearTimeout(this.state.typing);
@@ -41,15 +53,18 @@ class Notes extends Component {
 
             this.setState({
                 typing: setTimeout( () => {
-                    console.log('update in database');
                     this.props.updateNote(note.id, note.text);
                 }, 5000)
             });
         }
     };
 
+    newNote = () => {
+        // TODO: create new note with template text
+        // TODO: set state with new note
+    }
+
     handler = (note) => {
-        console.log(note)
         this.setState({
             note
         });
@@ -63,7 +78,7 @@ class Notes extends Component {
         const { note } = this.state;
         return (
             <div>
-                <Navbar />
+                <Navbar newNote={this.newNote} />
                 <div className={styles.content}>
                 <Sidebar action={this.handler}/>
                 <div className={styles.container}>

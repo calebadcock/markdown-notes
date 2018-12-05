@@ -10,9 +10,7 @@ import { isClient } from '../../config/app';
 const GoogleLogin = isClient ? require('react-google-login').GoogleLogin : undefined;
 const GoogleLogout = isClient ? require('react-google-login').GoogleLogout : undefined;
 
-
 const cx = classNames.bind(styles);
-
 
 /**
 * Navbar component
