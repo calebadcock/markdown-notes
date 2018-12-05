@@ -219,7 +219,11 @@ class Notes extends Component {
       } else if (e.which === 19 || (String.fromCharCode(event.which).toLowerCase() === 's' && e.ctrlKey)) {
         // Control+s or Cmd+s captured
         e.preventDefault();
-        // TODO: Eric, add save function
+        if (this.state.note.id) {
+            this.props.updateNote(this.state.note.id, this.state.note.text);
+        } else if (this.props.signedIn) {
+            this.props.newNote(this.state.note.text);
+        }
       }
       console.log(e.which)
     };
@@ -264,12 +268,13 @@ class Notes extends Component {
 Notes.propTypes = {
     updateNote: PropTypes.func,
     newNote: PropTypes.func,
-    note: PropTypes.object
+    note: PropTypes.object,
+    signedIn: PropTypes.bool
 
 };
 
-const mapStateToProps = ({ notes }) => {
-  return { notes };
+const mapStateToProps = ({ notes, user }) => {
+  return { notes, signedIn: user.authenticated };
 };
 
 export default connect(mapStateToProps, { updateNote, newNote })(Notes);
