@@ -1,0 +1,14 @@
+language: node_js
+node_js:
+- '8'
+install: yarn install --pure-lockfile
+before_deploy:
+- npm run build
+deploy:
+  provider: heroku
+  api_key:
+    secure: Rtq5mYJ20PE7L2g8TOU5JJeS9uVHKSh6qAlrypRvFWkivWc9MIzPDkv9riPPsjZp1FmGi1XQVZzS3fPSte6e8Q9P2fNNkWeVwjfQI0EhGnAfWuHS11EUMvSwW11CCnXvuIJLMREa+3Q1WIMVzlZUFxKwe9EkR02McHe/b0Hwg/4qkGnYTVjfMVsAF729L9KcSWjnpBojuwhSZpgP4mPhK04kruFkC5nVCZ1eJAq8chFTkcKv/T36En5CfwIjbo3RSShBwTkdzBRcRkSlME2tX2RdhgyjwvwS3/5GKEF7+5FTevbr+b37TobclxF6+9d/1GKkqZPbzoa/fQhXCjH2Gub8MNdSNmR9fle9BrkN0cxH0MGVZwdhwPnsSvFMLKCFLthr6yWfHFYJdiL1wwydZD1F1kFyBUVn3z3+D8FGo+pgqVM4/2Wh9hXP5BbpTSW6LBGPCZmEefAA45vRvIQUiICrvYH8PNwTCzZUBtNKe10stmUm4xJCcN5NZWWPephuk9oUyp7dlKNbGYU/zDVpujZddZzELJ+yRkufwjtxtP05MnoLKgMD/KLvF5QmEYrxPqLT3owi91yYjUecWlRA+b3FyHf1YJr6bKcNt8ZDiE1BATtQA8RlN1Mm1B7sX0O+L8Cme1a+b28cBHLB5Uxg9hgOSf+T9u/q+8yPDCXN2Tw=
+  app: markdown--notes
+  on:
+    repo: calebadcock/markdown-notes
+  skip_cleanup: true
