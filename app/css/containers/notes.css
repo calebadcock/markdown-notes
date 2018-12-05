@@ -7,7 +7,7 @@
 }
 
 .container {
-  width: 80%;
+  width: 100%;
   height: calc(100% - 4rem);
   display: flex;
   flex-direction: row;
@@ -31,6 +31,7 @@
 }
 
 .preview {
+  max-width: 50%;
   height: 92%;
   overflow-y: auto;
 }
