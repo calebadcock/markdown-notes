@@ -14,7 +14,7 @@
     "build:dev": "cross-env NODE_ENV=development npm run webpack -- --env.server",
     "build": "npm run clean && cross-env NODE_ENV=production npm run webpack -- --env.browser && cross-env NODE_ENV=production npm run webpack -- --env.server",
     "webpack": "webpack --colors --display-error-details --config ./webpack/webpack.config.js",
-    "test": "cross-env DEBUG=test nyc --reporter=lcov mocha --opts ./server/tests/mocha.opts && nyc report",
+    "test": "npm run build",
     "test:full-output": "cross-env DEBUG=felogical* nyc --reporter=lcov mocha --opts ./server/tests/mocha.opts && nyc report",
     "test:watch": "mocha --watch --reporter min --opts ./server/tests/mocha.opts",
     "test-ui": "mocha ./app/tests/setup.js --compilers css:./app/tests/compilers/css ./app/**/*-test.js",
