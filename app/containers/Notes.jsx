@@ -22,6 +22,7 @@ class Notes extends Component {
         super(props);
         this.state = {
             note: {
+                id: null,
                 text: '# Welcome'
             },
             typing: 0
@@ -32,7 +33,8 @@ class Notes extends Component {
         const { note } = this.state;
         note.text = newValue;
         this.setState({ note });
-        if (this.state.noteId) {
+        console.log(this.state.note.id);
+        if (this.state.note.id) {
             if (this.state.typing) {
                 clearTimeout(this.state.typing);
             }

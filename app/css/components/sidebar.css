@@ -44,7 +44,8 @@
 .note {
     height: 75px;
     width: 100%;
-    padding: 16px 40px;
+    padding: 26px 40px;
+    /* border-bottom: 1px solid #000; */
 }
 
 .note:hover {

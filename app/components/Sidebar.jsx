@@ -83,7 +83,7 @@ class Sidebar extends Component {
                             key={note.id}
                             data-id={note.id}
                             onClick={() => this.props.action(note)}>
-                        <div >{ note.text }</div>
+                        <div >{ (note.text).length < 15 ? note.text : (note.text).substr(0, 15) + '\u2026' }</div>
                     </div>
                 )}
               </div>
