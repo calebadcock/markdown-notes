@@ -24,7 +24,7 @@ class Notes extends Component {
         this.state = {
             note: {
                 id: null,
-                text: '# Welcome to Markdown Notes\n### This is a playground for writing markdown\nClick **Create Note** to start editing a new saved note!'
+                text: '# Welcome to Markdown Notes\n### This is a playground for writing markdown\nSign in and click **Create Note** to start editing a saved note!'
             },
             typing: 0
         };

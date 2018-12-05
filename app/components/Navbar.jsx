@@ -16,13 +16,27 @@ class Navbar extends Component {
     *
     */
     render() {
+        const { signedIn } = this.props;
+
         return (
             <div className={styles.navbar}>
                 <h2 className={styles.title}>Markdown Notes</h2>
-                <a className={styles.navButton} onClick={() => this.props.newNote()}>Create Note</a>
+                { signedIn &&
+                    <div>
+                        <a className={styles.navButton} onClick={() => this.props.newNote()}>Create Note</a>
+                    </div>
+                }
             </div>
         );
     }
 }
 
-export default Navbar;
+Navbar.propTypes = {
+    signedIn: PropTypes.bool
+}
+
+const mapStateToProps = ({ user }) => {
+  return { signedIn: user.authenticated };
+};
+
+export default connect(mapStateToProps, {})(Navbar);
