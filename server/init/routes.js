@@ -29,5 +29,10 @@ export default (app) => {
             const notes = await usersController.getNotes(req.user.id);
             return buildApiResponse(req, res, 200, notes);
     });
+
+    app.put('/user/notes', async (req, res) => {
+            const note = await usersController.updateNote(req.body.id, req.body.text);
+            return buildApiResponse(req, res, 200, note);
+    });
   }
 };

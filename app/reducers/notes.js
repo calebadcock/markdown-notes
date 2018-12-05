@@ -1,20 +1,20 @@
 import { combineReducers } from 'redux';
 import * as types from '../types';
 
-const notes = (
+const values = (
     state = [],
     action
 ) => {
     switch (action.type) {
-        case types.GET_NOTES_SUCCESS:
-            return action;
-        default:
-            return state;
+    case types.GET_NOTES_SUCCESS:
+        return action.notes;
+    default:
+        return state;
     }
 };
 
 const notesReducer = combineReducers({
-  notes
+  values
 });
 
 export default notesReducer;

@@ -8,5 +8,14 @@ export default () => {
       method: 'GET',
       url: '/user/notes',
     }),
+
+    updateNote: (id, text) => client.request({
+      method: 'PUT',
+      url: '/user/notes',
+      data: {
+          id,
+          text
+      }
+    }),
   };
 };

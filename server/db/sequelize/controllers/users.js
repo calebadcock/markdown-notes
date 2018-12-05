@@ -57,31 +57,18 @@ export function signUp(req, res, next) {
   );
 }
 
-/**
- * @return notes
- */
-// export function getNotes(userId) {
-//     return new Promise(function(resolve, reject) {
-//         Note.findAll({
-//             where: { userId },
-//         }).then( (notes) => {
-//             resolve(notes);
-//         }).catch( (err) => {
-//             reject(err);
-//         });
-//         // console.log(notes);
-//         // return notes;
-//     });
-// 
-// }
-
 export const getNotes = async (userId) => {
     return await Note.findAll({ where: { userId } });
+};
+
+export const updateNote = async (id, text) => {
+    return await Note.update({ text }, { where: { id } });
 };
 
 export default {
   login,
   logout,
   signUp,
-  getNotes
+  getNotes,
+  updateNote
 };

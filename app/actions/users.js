@@ -73,6 +73,24 @@ export const getNotesError = (message) => {
     };
 };
 
+export const beginUpdateNotes = () => {
+    return { type: types.UPDATE_NOTES};
+};
+
+export const updateNotesSuccess = (notes) => {
+    return {
+        type: types.UPDATE_NOTES_SUCCESS,
+        notes
+    };
+};
+
+export const updateNotesError = (message) => {
+    return {
+        type: types.UPDATE_NOTES_ERROR,
+        message: message
+    };
+};
+
 export function manualLogin(data) {
   return (dispatch) => {
     dispatch(beginLogin());
@@ -104,18 +122,28 @@ export const logout = () => {
 
 export const getNotes = () => {
     return (dispatch) => {
-    console.log('begin notes');
-    dispatch(beginGetNotes());
-    console.log('getting notes');
-    return userService().getNotes()
-      .then((response) => {
-          console.log('got here ??????')
-          console.log('response', response);
-          dispatch(getNotesSuccess(response.data));
-          dispatch(push('/'));
-      })
-      .catch((error) => {
-          dispatch(getNotesError());
-      });
-    }
+        dispatch(beginGetNotes());
+
+        return userService().getNotes()
+        .then((response) => {
+            dispatch(getNotesSuccess(response.data));
+        })
+        .catch((error) => {
+            dispatch(getNotesError());
+        });
+    };
+};
+
+export const updateNote = (id, text) => {
+    return (dispatch) => {
+        dispatch(beginUpdateNotes());
+
+        return userService().updateNote(id, text)
+        .then( (response) => {
+            dispatch(updateNotesSuccess(response.data));
+        })
+        .catch((error) => {
+            dispatch(updateNotesError());
+        });
+    };
 };

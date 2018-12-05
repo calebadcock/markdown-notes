@@ -69,39 +69,23 @@ class Sidebar extends Component {
   };
 
   /**
-   * Google logout button
-   * @return {any}
-   */
-  getNotesContainer = () => {
-      const { notes } = this.props.notes;
-      if (notes) {
-          let _notes = Object.values(notes);
-          _notes = _notes.map( (note) => {
-              return (
-                  <div className={styles.note} key={note.id} data-id={note.id} onClick={this.props.action}>
-                    <div >{ note.text }</div>
-                  </div>
-              );
-          });
-        return (
-            <div className={styles.notesContainer}>
-                { _notes }
-            </div>
-        );
-      }
-  };
-
-  /**
   * @return {*}
   *
   */
   render() {
-    const { signedIn } = this.props;
+    const { signedIn, notes } = this.props;
     return (
         <div className={styles.sidebar}>
           {signedIn &&
-              <div>
-                { this.getNotesContainer() }
+              <div className={styles.notesContainer}>
+              { notes.map( (note) =>
+                    <div className={styles.note}
+                            key={note.id}
+                            data-id={note.id}
+                            onClick={() => this.props.action(note)}>
+                        <div >{ note.text }</div>
+                    </div>
+                )}
               </div>
           }
           {!signedIn &&
@@ -129,6 +113,6 @@ Sidebar.propTypes = {
 };
 
 const mapStateToProps = ({ notes, user }) => {
-  return { notes: notes.notes, signedIn: user.authenticated };
+  return { notes: notes.values, signedIn: user.authenticated };
 };
 export default connect(mapStateToProps, {getNotes, manualLogin, logout})(Sidebar);

@@ -1,7 +1,5 @@
 .sidebar {
-    position: fixed;
-    left: 0;
-    top: 4rem;
+    position: relative;
     width: 20%;
     min-width: 15rem;
     max-width: 30rem;

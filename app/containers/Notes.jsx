@@ -6,6 +6,8 @@ import styles from '../css/containers/notes.css';
 import Navbar from '../components/Navbar.jsx';
 import Sidebar from '../components/Sidebar.jsx';
 import ReactMarkdown from 'react-markdown';
+import { updateNote } from '../actions/users';
+
 
 const cx = classNames.bind(styles);
 /**
@@ -19,24 +21,36 @@ class Notes extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            text: `# Welcome!`,
-            noteId: null
+            note: {
+                text: '# Welcome'
+            },
+            typing: 0
         };
     }
 
-    handleChange = (e) => {
-        this.setState({ text: e.target.value });
+    handleChange = (newValue) => {
+        const { note } = this.state;
+        note.text = newValue;
+        this.setState({ note });
+        if (this.state.noteId) {
+            if (this.state.typing) {
+                clearTimeout(this.state.typing);
+            }
+
+            this.setState({
+                typing: setTimeout( () => {
+                    console.log('update in database');
+                    this.props.updateNote(note.id, note.text);
+                }, 5000)
+            });
+        }
     };
 
-    handler = (e) => {
-        const id = e.target.getAttribute('data-id');
-        const text = e.target.textContent;
+    handler = (note) => {
+        console.log(note)
         this.setState({
-            text: e.target.textContent,
-            noteId: id
+            note
         });
-        console.log(id, text);
-        console.log('hello world');
     }
 
     /**
@@ -44,17 +58,20 @@ class Notes extends Component {
     * @return {*}
     */
     render() {
+        const { note } = this.state;
         return (
             <div>
                 <Navbar />
+                <div className={styles.content}>
                 <Sidebar action={this.handler}/>
                 <div className={styles.container}>
                   <div className={styles.wrapper}>
-                    <textarea className={styles.txtRaw} onChange={this.handleChange} value={this.state.text}/>
+                    <textarea className={styles.txtRaw} onChange={(e) => this.handleChange(e.target.value)} value={note.text}/>
                   </div>
                   <div className={styles.wrapper}>
-                    <ReactMarkdown className={styles.preview} source={this.state.text} />
+                    <ReactMarkdown className={styles.preview} source={note.text} />
                   </div>
+                </div>
                 </div>
             </div>
         );
@@ -62,10 +79,11 @@ class Notes extends Component {
 }
 
 Notes.propTypes = {
+    updateNote: PropTypes.func
 };
 
 const mapStateToProps = ({ notes }) => {
   return { notes };
 };
 
-export default connect(mapStateToProps)(Notes);
+export default connect(mapStateToProps, { updateNote })(Notes);
