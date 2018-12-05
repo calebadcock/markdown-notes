@@ -17,5 +17,13 @@ export default () => {
           text
       }
     }),
+
+    newNote: (text) => client.request({
+        method: 'POST',
+        url: '/user/notes',
+        data: {
+            text
+        }
+    }),
   };
 };

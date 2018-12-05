@@ -6,7 +6,7 @@ import styles from '../css/containers/notes.css';
 import Navbar from '../components/Navbar.jsx';
 import Sidebar from '../components/Sidebar.jsx';
 import ReactMarkdown from 'react-markdown';
-import { updateNote } from '../actions/users';
+import { updateNote, newNote } from '../actions/users';
 import Mousetrap from 'mousetrap';
 
 
@@ -60,6 +60,11 @@ class Notes extends Component {
     };
 
     newNote = () => {
+        const text = '# Welcome to your new note!\n### Start typing to edit your note';
+        const note = this.props.newNote(text);
+        console.log(note.text);
+        console.log(note.id);
+        this.setState({ state_note });
         // TODO: create new note with template text
         // TODO: set state with new note
     }
@@ -252,11 +257,13 @@ class Notes extends Component {
 }
 
 Notes.propTypes = {
-    updateNote: PropTypes.func
+    updateNote: PropTypes.func,
+    newNote: PropTypes.func
+
 };
 
 const mapStateToProps = ({ notes }) => {
   return { notes };
 };
 
-export default connect(mapStateToProps, { updateNote })(Notes);
+export default connect(mapStateToProps, { updateNote, newNote })(Notes);

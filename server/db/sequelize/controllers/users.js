@@ -65,10 +65,16 @@ export const updateNote = async (id, text) => {
     return await Note.update({ text }, { where: { id } });
 };
 
+export const newNote = async (userId, text) => {
+    // TODO: possibly change to find or create
+    return await Note.create({ userId, text });
+};
+
 export default {
   login,
   logout,
   signUp,
   getNotes,
-  updateNote
+  updateNote,
+  newNote
 };

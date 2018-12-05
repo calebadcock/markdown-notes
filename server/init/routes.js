@@ -26,12 +26,19 @@ export default (app) => {
     );
 
     app.get('/user/notes', async (req, res) => {
+            console.log('getting notes');
+            console.log(req.user.id);
             const notes = await usersController.getNotes(req.user.id);
             return buildApiResponse(req, res, 200, notes);
     });
 
     app.put('/user/notes', async (req, res) => {
             const note = await usersController.updateNote(req.body.id, req.body.text);
+            return buildApiResponse(req, res, 200, note);
+    });
+
+    app.post('/user/notes', async (req, res) => {
+            const note = await usersController.newNote(req.user.id, req.body.text);
             return buildApiResponse(req, res, 200, note);
     });
   }

@@ -91,6 +91,24 @@ export const updateNotesError = (message) => {
     };
 };
 
+export const beginNewNote = () => {
+    return { type: types.NEW_NOTE};
+};
+
+export const newNoteSuccess = (notes) => {
+    return {
+        type: types.NEW_NOTE_SUCCESS,
+        note
+    };
+};
+
+export const newNoteError = (message) => {
+    return {
+        type: types.NEW_NOTE_ERROR,
+        message: message
+    };
+};
+
 export function manualLogin(data) {
   return (dispatch) => {
     dispatch(beginLogin());
@@ -144,6 +162,22 @@ export const updateNote = (id, text) => {
         })
         .catch((error) => {
             dispatch(updateNotesError());
+        });
+    };
+};
+
+export const newNote = (text) => {
+    return (dispatch) => {
+        dispatch(beginNewNote());
+
+        userService().newNote(text)
+        .then( (response) => {
+            console.log(response.data);
+            dispatch(newNoteSuccess(response.data));
+            return response.data;
+        })
+        .catch((error) => {
+            dispatch(newNoteError());
         });
     };
 };
