@@ -22,7 +22,7 @@ class Navbar extends Component {
             <div className={styles.navbar}>
                 <h2 className={styles.title}>Markdown Notes</h2>
                 { signedIn &&
-                    <div>
+                    <div className={styles.buttonGroup}>
                         <a className={styles.navButton} onClick={() => this.props.newNote()}>Create Note</a>
                     </div>
                 }
