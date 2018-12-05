@@ -61,10 +61,10 @@ class Notes extends Component {
 
     newNote = () => {
         const text = '# Welcome to your new note!\n### Start typing to edit your note';
-        const note = this.props.newNote(text);
-        console.log(note.text);
-        console.log(note.id);
-        this.setState({ state_note });
+        this.props.newNote(text)
+        const note = this.props.note;
+        console.log(note);
+        // this.setState({ note });
         // TODO: create new note with template text
         // TODO: set state with new note
     }
@@ -258,7 +258,8 @@ class Notes extends Component {
 
 Notes.propTypes = {
     updateNote: PropTypes.func,
-    newNote: PropTypes.func
+    newNote: PropTypes.func,
+    note: PropTypes.object
 
 };
 

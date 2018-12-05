@@ -77,10 +77,10 @@ export const beginUpdateNotes = () => {
     return { type: types.UPDATE_NOTES};
 };
 
-export const updateNotesSuccess = (notes) => {
+export const updateNotesSuccess = (note) => {
     return {
         type: types.UPDATE_NOTES_SUCCESS,
-        notes
+        note
     };
 };
 
@@ -95,7 +95,7 @@ export const beginNewNote = () => {
     return { type: types.NEW_NOTE};
 };
 
-export const newNoteSuccess = (notes) => {
+export const newNoteSuccess = (note) => {
     return {
         type: types.NEW_NOTE_SUCCESS,
         note
@@ -172,7 +172,6 @@ export const newNote = (text) => {
 
         userService().newNote(text)
         .then( (response) => {
-            console.log(response.data);
             dispatch(newNoteSuccess(response.data));
             return response.data;
         })

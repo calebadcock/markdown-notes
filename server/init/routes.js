@@ -26,8 +26,6 @@ export default (app) => {
     );
 
     app.get('/user/notes', async (req, res) => {
-            console.log('getting notes');
-            console.log(req.user.id);
             const notes = await usersController.getNotes(req.user.id);
             return buildApiResponse(req, res, 200, notes);
     });

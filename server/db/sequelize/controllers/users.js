@@ -62,7 +62,8 @@ export const getNotes = async (userId) => {
 };
 
 export const updateNote = async (id, text) => {
-    return await Note.update({ text }, { where: { id } });
+    await Note.update({ text }, { where: { id } });
+    return await Note.find({where: {id}});
 };
 
 export const newNote = async (userId, text) => {
