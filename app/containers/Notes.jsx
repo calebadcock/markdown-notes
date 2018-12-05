@@ -224,8 +224,23 @@ class Notes extends Component {
         } else if (this.props.signedIn) {
             this.props.newNote(this.state.note.text);
         }
+      } else if (String.fromCharCode(event.which).toLowerCase() === 'b' && (e.ctrlKey || e.metaKey)) {
+        this.boldMod(e);
+      } else if (String.fromCharCode(event.which).toLowerCase() === 'h' && (e.ctrlKey || e.metaKey)) {
+        this.headerMod(e);
+      } else if (String.fromCharCode(event.which).toLowerCase() === 'i' && (e.ctrlKey || e.metaKey)) {
+        this.italicMod(e);
+      } else if (String.fromCharCode(event.which).toLowerCase() === 'n' && (e.ctrlKey || e.metaKey)) {
+        this.numberedListMod(e);
+      } else if (String.fromCharCode(event.which).toLowerCase() === 'm' && (e.ctrlKey || e.metaKey)) {
+        this.bulletListMod(e);
+      } else if (String.fromCharCode(event.which).toLowerCase() === 'j' && (e.ctrlKey || e.metaKey)) {
+        this.strikethroughMod(e);
+      } else if (String.fromCharCode(event.which).toLowerCase() === 'k' && (e.ctrlKey || e.metaKey)) {
+        this.codeMod(e);
+      } else if (String.fromCharCode(event.which).toLowerCase() === 'l' && (e.ctrlKey || e.metaKey)) {
+        this.linkMod(e);
       }
-      console.log(e.which)
     };
 
     /**
