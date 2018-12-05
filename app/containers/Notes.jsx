@@ -24,7 +24,7 @@ class Notes extends Component {
         this.state = {
             note: {
                 id: null,
-                text: '# Welcome'
+                text: '# Welcome to Markdown Notes\n### This is a playground for writing markdown\nClick **Create Note** to start editing a new saved note!'
             },
             typing: 0
         };
@@ -40,6 +40,16 @@ class Notes extends Component {
                 this.props.updateNote(this.state.note.id, this.state.note.text);
             }
         });
+    }
+
+    /**
+     * Invoked when component is updated
+     */
+    componentDidUpdate(oldProps) {
+        if (oldProps.notes.note !== this.props.notes.note) {
+            const note = this.props.notes.note;
+            this.setState({ note });
+        }
     }
 
     handleChange = (newValue) => {
@@ -61,12 +71,7 @@ class Notes extends Component {
 
     newNote = () => {
         const text = '# Welcome to your new note!\n### Start typing to edit your note';
-        this.props.newNote(text)
-        const note = this.props.note;
-        console.log(note);
-        // this.setState({ note });
-        // TODO: create new note with template text
-        // TODO: set state with new note
+        this.props.newNote(text);
     }
 
     handler = (note) => {
