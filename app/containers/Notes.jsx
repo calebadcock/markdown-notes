@@ -206,7 +206,12 @@ class Notes extends Component {
             note
           }, () => this.highlightText(start + 3, start + 3));
         }
+      } else if (e.which === 19 || (String.fromCharCode(event.which).toLowerCase() === 's' && e.ctrlKey)) {
+        // Control+s or Cmd+s captured
+        e.preventDefault();
+        // TODO: Eric, add save function
       }
+      console.log(e.which)
     };
 
     /**
