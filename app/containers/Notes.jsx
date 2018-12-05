@@ -199,6 +199,12 @@ class Notes extends Component {
           this.setState({
             note
           }, () => this.highlightText(start + 4, start + 4));
+        } else if (lines.length > 0 && /^\*\s/.test(lines[lines.length - 1])) {
+          e.preventDefault();
+          note.text = `${before}\n* ${selection}${after}`;
+          this.setState({
+            note
+          }, () => this.highlightText(start + 3, start + 3));
         }
       }
     };
