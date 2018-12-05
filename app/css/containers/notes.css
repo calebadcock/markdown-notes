@@ -1,22 +1,23 @@
+@import '../common/colors.css';
+
 .content {
     display: flex;
     flex-direction: row;
     height: 100%;
 }
 
-
 .container {
   width: 80%;
   height: calc(100% - 4rem);
   display: flex;
   flex-direction: row;
+  flex-grow: 1;
 }
 
 .wrapper {
   flex: 1;
   padding: 1rem;
 }
-
 
 .txtRaw {
   height: 100%;
@@ -32,4 +33,25 @@
 .preview {
   height: 100%;
   overflow-y: auto;
+}
+
+.wrapperContent {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.containerTools {
+  padding: 1rem 1rem 0 1rem;
+}
+
+.btnTool {
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  font-weight: bold;
+  margin-right: 0.5rem;
 }
