@@ -6,6 +6,7 @@ import styles from '../css/components/sidebar.css';
 import { getNotes } from '../actions/users';
 import { manualLogin, logout } from '../actions/users';
 import { isClient } from '../../config/app';
+import moment from 'moment';
 
 const GoogleLogin = isClient ? require('react-google-login').GoogleLogin : undefined;
 const GoogleLogout = isClient ? require('react-google-login').GoogleLogout : undefined;
@@ -82,6 +83,7 @@ class Sidebar extends Component {
                             data-id={note.id}
                             onClick={() => this.props.action(note)}>
                         <div >{ (note.text).length < 15 ? note.text : (note.text).substr(0, 15) + '\u2026' }</div>
+                        <span>{ moment(note.updatedAt).calendar()}</span>
                     </div>
                 )}
               </div>

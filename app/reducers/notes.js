@@ -7,15 +7,25 @@ const values = (
 ) => {
     switch (action.type) {
     case types.GET_NOTES_SUCCESS:
+        action.notes.sort( (a, b) => {
+            return new Date(b.updatedAt) - new Date(a.updatedAt);
+        });
         return action.notes;
 
     case types.NEW_NOTE_SUCCESS:
-        return [...state, action.note]
+        const notes = [...state, action.note];
+        notes.sort( (a, b) => {
+            return new Date(b.updatedAt) - new Date(a.updatedAt);
+        });
+        return notes;
 
     case types.UPDATE_NOTES_SUCCESS:
         const newState = state.map( (note) => {
             return note.id == action.note.id ? action.note : note
         })
+        newState.sort( (a, b) => {
+            return new Date(b.updatedAt) - new Date(a.updatedAt);
+        });
         return newState;
     default:
         return state;
