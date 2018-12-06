@@ -33,7 +33,7 @@ class Navbar extends Component {
 
 Navbar.propTypes = {
     signedIn: PropTypes.bool
-}
+};
 
 const mapStateToProps = ({ user }) => {
   return { signedIn: user.authenticated };

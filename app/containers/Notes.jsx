@@ -50,6 +50,12 @@ class Notes extends Component {
             const note = this.props.notes.note;
             this.setState({ note });
         }
+        if (oldProps.signedIn !== this.props.signedIn && !this.props.signedIn) {
+            this.setState({ note: {
+                id: null,
+                text: '# Welcome to Markdown Notes\n### This is a playground for writing markdown\nSign in and click **Create Note** to start editing a saved note!'
+            }});
+        }
     }
 
     handleChange = (newValue) => {
@@ -253,7 +259,7 @@ class Notes extends Component {
             <div>
                 <Navbar newNote={this.newNote} />
                 <div className={styles.content}>
-                  <Sidebar action={this.handler}/>
+                  <Sidebar action={this.handler} clearState={this.clearState}/>
                   <div className={styles.wrapperContent}>
                     <div className={styles.containerTools}>
                       <button className={styles.btnTool} onClick={this.boldMod}>B</button>
