@@ -7,10 +7,12 @@ span {
   width: 20%;
   min-width: 15rem;
   max-width: 30rem;
-  height: 100%;
+  height: calc(100% - 4rem);
   background-color: #fff;
   box-shadow: 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12), 0 2px 4px -1px rgba(0,0,0,.2);
   z-index: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .containerLogin {
@@ -18,6 +20,7 @@ span {
   flex-direction: column;
   margin: 0 auto;
   padding: 1rem;
+  width: 100%;
 }
 
 .btnLogout {
@@ -37,7 +40,7 @@ span {
 }
 
 .notesContainer {
-    height: 90%;
+    flex-grow: 1;
     overflow-y: auto;
 }
 
