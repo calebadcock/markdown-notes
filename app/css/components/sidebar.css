@@ -3,14 +3,14 @@ span {
 }
 
 .sidebar {
-    position: relative;
-    width: 20%;
-    min-width: 15rem;
-    max-width: 30rem;
-    height: 100%;
-    background-color: #fff;
-    box-shadow: 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12), 0 2px 4px -1px rgba(0,0,0,.2);
-    z-index: 1;
+  position: relative;
+  width: 20%;
+  min-width: 15rem;
+  max-width: 30rem;
+  height: 100%;
+  background-color: #fff;
+  box-shadow: 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12), 0 2px 4px -1px rgba(0,0,0,.2);
+  z-index: 1;
 }
 
 .containerLogin {
@@ -37,7 +37,7 @@ span {
 }
 
 .notesContainer {
-    height: 85%;
+    height: 90%;
     overflow-y: auto;
 }
 
@@ -46,12 +46,19 @@ span {
 }
 
 .note {
-    height: 75px;
-    width: 100%;
-    padding: 26px 40px;
-    /* border-bottom: 1px solid #000; */
+  height: 4rem;
+  width: 100%;
+  padding: 1rem;
 }
 
 .note:hover {
     background-color: #e0e0e0;
+}
+
+.title {
+  white-space: nowrap;
+  overflow: hidden;
+  display: block;
+  text-overflow: ellipsis;
+  margin: 0;
 }

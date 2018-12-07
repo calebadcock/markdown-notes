@@ -31,7 +31,7 @@ class Sidebar extends Component {
    * Invoked once, retrieve users notes
    */
   componentDidMount() {
-      this.props.getNotes();
+    if (this.props.signedIn) this.props.getNotes();
   }
 
   /**
@@ -82,7 +82,7 @@ class Sidebar extends Component {
                             key={note.id}
                             data-id={note.id}
                             onClick={() => this.props.action(note)}>
-                        <div >{ (note.text).length < 15 ? note.text : (note.text).substr(0, 15) + '\u2026' }</div>
+                        <p className={styles.title}>{ note.text }</p>
                         <span>{ moment(note.updatedAt).calendar()}</span>
                     </div>
                 )}

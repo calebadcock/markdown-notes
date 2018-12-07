@@ -187,7 +187,7 @@ class Notes extends Component {
         this.setState({
           note
         }, () => this.highlightText(start + 1, start + 5));
-      } else if (/^((http[s]?|ftp):\/)?\/?([^:\/\s]+)((\/\w+)*\/)([\w\-\.]+[^#?\s]+)(.*)?(#[\w\-]+)?$/.test(selection)) {
+      } else if (/^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9\-]+([\-\.]{1}[a-z0-9\-]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/.test(selection)) {
         note.text = `${before}[text](${selection})${after}`;
         this.setState({
           note
@@ -262,9 +262,9 @@ class Notes extends Component {
                   <Sidebar action={this.handler} clearState={this.clearState}/>
                   <div className={styles.wrapperContent}>
                     <div className={styles.containerTools}>
-                      <button className={styles.btnTool} onClick={this.boldMod}>B</button>
-                      <button className={styles.btnTool} onClick={this.italicMod}>I</button>
-                      <button className={styles.btnTool} onClick={this.strikethroughMod}>S</button>
+                      <button className={styles.btnTool} onClick={this.boldMod}><b>B</b></button>
+                      <button className={styles.btnTool} onClick={this.italicMod}><i>I</i></button>
+                      <button className={styles.btnTool} onClick={this.strikethroughMod}><s>S</s></button>
                       <button className={styles.btnTool} onClick={this.headerMod}>H</button>
                       <button className={styles.btnTool} onClick={this.linkMod}>L</button>
                       <button className={styles.btnTool} onClick={this.codeMod}>&lt;/&gt;</button>

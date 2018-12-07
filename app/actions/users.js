@@ -109,7 +109,7 @@ export const newNoteError = (message) => {
     };
 };
 
-export function manualLogin(data) {
+export const manualLogin = (data) => {
   return (dispatch) => {
     dispatch(beginLogin());
 
@@ -117,12 +117,13 @@ export function manualLogin(data) {
       .then((response) => {
           dispatch(loginSuccess('You have been successfully logged in'));
           dispatch(push('/'));
+          dispatch(getNotes());
       })
       .catch((err) => {
         dispatch(loginError('Oops! Invalid username or password'));
       });
   };
-}
+};
 
 export const logout = () => {
   return (dispatch) => {
