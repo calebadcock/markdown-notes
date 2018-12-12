@@ -31,7 +31,6 @@
 }
 
 .preview {
-  max-width: 50%;
   height: 92%;
   overflow-y: auto;
 }
