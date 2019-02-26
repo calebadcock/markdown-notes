@@ -1,0 +1,26 @@
+.content {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+
+.container {
+  width: 100%;
+  height: calc(100% - 4rem);
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+}
+
+.wrapper {
+  flex: 1;
+  padding: 1rem;
+  max-width: 50%;
+}
+
+.wrapperContent {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}

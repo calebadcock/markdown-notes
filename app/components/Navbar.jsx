@@ -19,7 +19,7 @@ class Navbar extends Component {
     render() {
         return (
             <div className={styles.navbar}>
-                <h2 className={styles.title}>Markdown Notes</h2>
+                <h2 className={styles.title}>Dashboard</h2>
             </div>
         );
     }

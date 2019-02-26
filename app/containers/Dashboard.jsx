@@ -2,16 +2,15 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import classNames from 'classnames/bind';
-import styles from '../css/containers/notes.css';
+import styles from '../css/containers/dashboard.css';
 import Navbar from '../components/Navbar.jsx';
 import Sidebar from '../components/Sidebar.jsx';
-import ReactMarkdown from 'react-markdown';
 
 const cx = classNames.bind(styles);
 /**
  * Container for the notes
  */
-class Notes extends Component {
+class Dashboard extends Component {
     /**
      * Sets the initial state of the Notes page
      * @param {Object} props
@@ -19,7 +18,6 @@ class Notes extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            text: `# Welcome!`
         };
     }
 
@@ -33,27 +31,25 @@ class Notes extends Component {
     */
     render() {
         return (
-            <div>
-                <Navbar />
-                <Sidebar />
+          <div>
+            <Navbar/>
+            <div className={styles.content}>
+              <Sidebar/>
+              <div className={styles.wrapperContent}>
                 <div className={styles.container}>
-                  <div className={styles.wrapper}>
-                    <textarea className={styles.txtRaw} onChange={this.handleChange} value={this.state.text}/>
-                  </div>
-                  <div className={styles.wrapper}>
-                    <ReactMarkdown className={styles.preview} source={this.state.text} />
-                  </div>
                 </div>
+              </div>
             </div>
+          </div>
         );
     }
 }
 
-Notes.propTypes = {
+Dashboard.propTypes = {
 };
 
-const mapStateToProps = ({ notes }) => {
-  return { notes };
+const mapStateToProps = ({ user }) => {
+  return { user };
 };
 
-export default connect(mapStateToProps)(Notes);
+export default connect(mapStateToProps)(Dashboard);

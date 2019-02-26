@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import Page from '../pages/Page';
-import NotesContainer from '../containers/Notes';
+import NotesContainer from '../containers/Dashboard';
 
 /**
- * Page component for notes screen
+ * Page component for Dashboard screen
  * @return {*}
  */
-class Notes extends Component {
+class Dashboard extends Component {
   getMetaData = () => {
     return {
       title: this.pageTitle(),
@@ -16,7 +16,7 @@ class Notes extends Component {
   };
 
   pageTitle = () => {
-    return 'Notes | Markdown Notes';
+    return 'Dashboard | React';
   };
 
   pageMeta = () => {
@@ -28,7 +28,7 @@ class Notes extends Component {
   };
 
   /**
-   * Renders page with notes container
+   * Renders page with Dashboard container
    * @return {*}
    */
   render() {
@@ -40,4 +40,4 @@ class Notes extends Component {
   }
 }
 
-export default Notes;
+export default Dashboard;

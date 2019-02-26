@@ -11,17 +11,14 @@
 - Create `.env` file with the following:
 
 ```
-DEBUG=mardown-notes*
+DEBUG=dashboard*
 NODE_ENV=development
 PORT=3000
 DB_URL=127.0.0.1
-DB_USER=markdown
+DB_USER=dashboard
 DB_PASS=password
 SESSION_SECRET=<session_secret>
-DB_NAME=markdown
-GOOGLE_CLIENT_ID=<client_id>
-GOOGLE_CLIENT_SECRET=<client_secret>
-GOOGLE_CALLBACK_URL=http://localhost:3000/redirect/google
+DB_NAME=dashboard
 ```
 
 Run server: `yarn run dev`

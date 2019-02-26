@@ -3,11 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import classNames from 'classnames/bind';
 import styles from '../css/components/sidebar.css';
-import { getNotes } from '../actions/users';
-import { isClient } from '../../config/app';
-
-const GoogleLogin = isClient ? require('react-google-login').GoogleLogin : undefined;
-
 
 const cx = classNames.bind(styles);
 
@@ -27,10 +22,9 @@ class Sidebar extends Component {
     }
 
     /**
-     * Invoked once, retrieve users notes
+     * Invoked once
      */
     componentDidMount() {
-        this.props.getNotes();
     }
 
     /**
@@ -40,26 +34,15 @@ class Sidebar extends Component {
     render() {
         return (
             <div className={styles.sidebar}>
-
-              { GoogleLogin &&
-              <GoogleLogin
-                clientId={window.GOOGLE_CLIENT_ID}
-                buttonText="Login"
-                onSuccess={() => {}}
-                onFailure={() => {}}
-              />
-              }
             </div>
         );
     }
 }
 
 Sidebar.propTypes = {
-    getNotes: PropTypes.func,
-    notes: PropTypes.object
 };
 
-const mapStateToProps = (notes) => {
-    return { notes };
+const mapStateToProps = ({ user }) => {
+    return { user };
 };
-export default connect(mapStateToProps, {getNotes})(Sidebar);
+export default connect(mapStateToProps, {})(Sidebar);

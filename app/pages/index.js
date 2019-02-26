@@ -1,2 +1,2 @@
 export { default as App } from 'pages/App';
-export { default as Notes } from 'pages/Notes';
+export { default as Notes } from 'pages/Dashboard';
